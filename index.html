@@ -7,7 +7,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>Happy Valentine's Day ❤️</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Dancing+Script:wght@400;700&family=Great+Vibes&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -23,11 +23,13 @@
             --deep-rose: #c7385f;
             --gold: #ffd700;
             --purple: #d946ef;
+            --light-purple: #f3e8ff;
         }
 
         html {
             -webkit-text-size-adjust: 100%;
             -ms-text-size-adjust: 100%;
+            scroll-behavior: smooth;
         }
 
         body {
@@ -65,7 +67,41 @@
             100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
         }
 
-        /* Interactive cursor trail - disabled on mobile */
+        /* Rose petals falling */
+        .petals-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .petal {
+            position: absolute;
+            color: var(--rose-pink);
+            font-size: 25px;
+            opacity: 0.6;
+            animation: petalFall 12s infinite ease-in;
+        }
+
+        @keyframes petalFall {
+            0% { 
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 0.6;
+            }
+            50% {
+                opacity: 0.8;
+            }
+            100% { 
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Interactive cursor trail */
         .cursor-trail {
             position: fixed;
             width: 20px;
@@ -158,6 +194,69 @@
             padding: 0 10px;
         }
 
+        /* Love Letter Section */
+        .love-letter {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 245, 247, 0.95));
+            border-radius: 25px;
+            padding: 35px 25px;
+            margin-bottom: 35px;
+            box-shadow: 0 15px 50px rgba(199, 56, 95, 0.25);
+            border: 3px solid var(--soft-pink);
+            position: relative;
+            overflow: hidden;
+            animation: fadeInScale 1.2s ease-out;
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .love-letter::before {
+            content: '💌';
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 3rem;
+            opacity: 0.2;
+            animation: floatEmoji 3s ease-in-out infinite;
+        }
+
+        @keyframes floatEmoji {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .love-letter h3 {
+            font-family: 'Great Vibes', cursive;
+            color: var(--deep-rose);
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .love-letter p {
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
+            line-height: 1.9;
+            color: #444;
+            text-align: center;
+            font-style: italic;
+        }
+
+        .love-letter .signature {
+            margin-top: 20px;
+            text-align: right;
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(1.2rem, 3vw, 1.6rem);
+            color: var(--deep-rose);
+        }
+
         /* Days Counter */
         .days-counter {
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 245, 247, 0.95));
@@ -223,6 +322,54 @@
             opacity: 0.9;
             text-transform: uppercase;
             letter-spacing: 1px;
+        }
+
+        /* Promise Rings Section */
+        .promise-rings {
+            background: linear-gradient(135deg, var(--light-purple), var(--soft-pink));
+            padding: 35px 25px;
+            border-radius: 25px;
+            margin-bottom: 35px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(217, 70, 239, 0.3);
+            animation: slideInRight 1s ease-out;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .promise-rings h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--deep-rose);
+            font-size: clamp(1.5rem, 5vw, 2rem);
+            margin-bottom: 25px;
+        }
+
+        .rings-display {
+            font-size: clamp(3rem, 10vw, 5rem);
+            margin: 20px 0;
+            animation: ringShine 3s ease-in-out infinite;
+        }
+
+        @keyframes ringShine {
+            0%, 100% { transform: scale(1); filter: brightness(1); }
+            50% { transform: scale(1.1); filter: brightness(1.3); }
+        }
+
+        .promise-text {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(1.2rem, 3.5vw, 1.8rem);
+            color: var(--deep-rose);
+            margin-top: 20px;
+            font-weight: 600;
         }
 
         .photo-carousel {
@@ -316,7 +463,6 @@
             z-index: 2;
         }
 
-        /* Like button - FIXED positioning */
         .like-button {
             position: absolute;
             bottom: 25px;
@@ -537,6 +683,69 @@
             }
         }
 
+        /* Romantic Moments Timeline */
+        .timeline {
+            margin-top: 40px;
+            padding: 30px 20px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 245, 247, 0.9));
+            border-radius: 25px;
+            box-shadow: 0 15px 50px rgba(199, 56, 95, 0.2);
+        }
+
+        .timeline h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--deep-rose);
+            font-size: clamp(1.5rem, 5vw, 2rem);
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 25px;
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            border-left: 4px solid var(--rose-pink);
+            box-shadow: 0 5px 20px rgba(199, 56, 95, 0.1);
+            animation: fadeInUp 0.8s ease-out backwards;
+        }
+
+        .timeline-item:nth-child(2) { animation-delay: 0.1s; }
+        .timeline-item:nth-child(3) { animation-delay: 0.2s; }
+        .timeline-item:nth-child(4) { animation-delay: 0.3s; }
+        .timeline-item:nth-child(5) { animation-delay: 0.4s; }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .timeline-icon {
+            font-size: 2.5rem;
+            flex-shrink: 0;
+        }
+
+        .timeline-content h4 {
+            color: var(--deep-rose);
+            font-size: clamp(1.1rem, 3vw, 1.3rem);
+            margin-bottom: 8px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .timeline-content p {
+            color: #555;
+            font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+            line-height: 1.6;
+        }
+
         /* Love Reasons Section */
         .love-reasons {
             margin-top: 40px;
@@ -573,17 +782,6 @@
         .reason-card:nth-child(2) { animation-delay: 0.2s; }
         .reason-card:nth-child(3) { animation-delay: 0.3s; }
         .reason-card:nth-child(4) { animation-delay: 0.4s; }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
 
         .reason-card:active,
         .reason-card:hover {
@@ -725,6 +923,46 @@
             text-align: right;
         }
 
+        /* Forever Promise Section */
+        .forever-promise {
+            background: linear-gradient(135deg, var(--rose-pink), var(--purple));
+            padding: 40px 25px;
+            border-radius: 25px;
+            margin-top: 40px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 20px 60px rgba(199, 56, 95, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .forever-promise::before {
+            content: '∞';
+            position: absolute;
+            font-size: 15rem;
+            opacity: 0.1;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Playfair Display', serif;
+        }
+
+        .forever-promise h3 {
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(2rem, 6vw, 3rem);
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .forever-promise p {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(1.2rem, 3.5vw, 1.8rem);
+            line-height: 1.8;
+            position: relative;
+            z-index: 1;
+        }
+
         /* Click counter */
         .click-counter {
             position: fixed;
@@ -787,11 +1025,21 @@
                 padding: 12px 15px;
                 min-width: 90px;
             }
+
+            .timeline-item {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .timeline-icon {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
 <body>
     <div class="hearts-bg" id="heartsBackground"></div>
+    <div class="petals-container" id="petalsContainer"></div>
     
     <!-- Click Counter -->
     <div class="click-counter">
@@ -804,7 +1052,16 @@
             <p class="subtitle">To the one who makes every moment magical ✨</p>
         </header>
 
-        <!-- Days Together Counter - UPDATED TO 2 YEARS -->
+        <!-- Love Letter -->
+        <div class="love-letter">
+            <h3>My Dearest Love,</h3>
+            <p>
+                From the moment you came into my life, everything changed. You turned my ordinary days into extraordinary adventures, my silence into sweet melodies, and my dreams into beautiful realities. These two years with you have been the most precious gift, and I fall more in love with you every single day. You are my forever, my always, my everything. 💕
+            </p>
+            <div class="signature">Forever Yours ❤️</div>
+        </div>
+
+        <!-- Days Together Counter -->
         <div class="days-counter">
             <h3>Our Beautiful Journey Together 💖</h3>
             <div class="counter-display">
@@ -821,6 +1078,13 @@
                     <span class="counter-label">Memories Made</span>
                 </div>
             </div>
+        </div>
+
+        <!-- Promise Rings Section -->
+        <div class="promise-rings">
+            <h3>Our Promise to Each Other 💍</h3>
+            <div class="rings-display">💍💕💍</div>
+            <p class="promise-text">Two hearts, one soul, forever intertwined</p>
         </div>
 
         <div class="photo-carousel">
@@ -847,6 +1111,39 @@
             </div>
 
             <div class="progress-dots" id="progressDots"></div>
+        </div>
+
+        <!-- Romantic Moments Timeline -->
+        <div class="timeline">
+            <h3>Our Favorite Moments 🌹</h3>
+            <div class="timeline-item">
+                <div class="timeline-icon">💑</div>
+                <div class="timeline-content">
+                    <h4>The Day We Met</h4>
+                    <p>When our eyes first met, I knew my life would never be the same</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-icon">🌙</div>
+                <div class="timeline-content">
+                    <h4>Our First Date</h4>
+                    <p>An evening filled with laughter, nervousness, and the beginning of forever</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-icon">💖</div>
+                <div class="timeline-content">
+                    <h4>First "I Love You"</h4>
+                    <p>Three words that changed everything and made my heart complete</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-icon">🎉</div>
+                <div class="timeline-content">
+                    <h4>Adventures Together</h4>
+                    <p>From spontaneous trips to quiet nights in, every moment is special with you</p>
+                </div>
+            </div>
         </div>
 
         <!-- Love Reasons Section -->
@@ -920,6 +1217,14 @@
                 <div class="stat-value">∞</div>
             </div>
         </div>
+
+        <!-- Forever Promise -->
+        <div class="forever-promise">
+            <h3>My Promise to You</h3>
+            <p>
+                I promise to love you through every sunrise and sunset, to hold your hand through every storm, to celebrate your joys and comfort your sorrows. I promise to choose you, every single day, for all the days of my life. You are my forever, and I am eternally yours. 💕
+            </p>
+        </div>
     </div>
 
     <script>
@@ -952,12 +1257,31 @@
             "Together is my favorite place to be.",
             "You are my sun, my moon, and all my stars.",
             "I choose you. And I'll choose you over and over again. Without pause, without a doubt.",
-            "Being with you feels like coming home."
+            "Being with you feels like coming home.",
+            "You're not just my love, you're my best friend and my safe place.",
+            "With you, I found a love I never knew existed and a home I never knew I needed."
         ];
 
         let currentIndex = 0;
         let clickCount = 0;
         let photoLiked = [false, false, false, false];
+
+        // Create falling rose petals
+        function createPetals() {
+            const petalsContainer = document.getElementById('petalsContainer');
+            const petalSymbols = ['🌸', '🌺', '🌹', '💮'];
+            const petalCount = window.innerWidth < 768 ? 8 : 12;
+            
+            for (let i = 0; i < petalCount; i++) {
+                const petal = document.createElement('div');
+                petal.className = 'petal';
+                petal.textContent = petalSymbols[Math.floor(Math.random() * petalSymbols.length)];
+                petal.style.left = Math.random() * 100 + '%';
+                petal.style.animationDelay = Math.random() * 12 + 's';
+                petal.style.animationDuration = (Math.random() * 8 + 8) + 's';
+                petalsContainer.appendChild(petal);
+            }
+        }
 
         // Cursor trail effect - only on desktop
         if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
@@ -1040,7 +1364,6 @@
             currentMessage.textContent = photos[currentIndex].message;
             photoNumber.textContent = `Memory ${currentIndex + 1} of ${photos.length}`;
             
-            // Update like button
             likeButton.textContent = photoLiked[currentIndex] ? '❤️' : '🤍';
             
             document.querySelectorAll('.dot').forEach((dot, index) => {
@@ -1092,7 +1415,6 @@
             }, 300);
         }
 
-        // Animate stat bars
         function animateStats() {
             const statBars = document.querySelectorAll('.stat-bar');
             statBars.forEach((bar, index) => {
@@ -1103,7 +1425,6 @@
             });
         }
 
-        // Days counter animation - UPDATED FOR 2 YEARS
         function animateCounter(element, target) {
             let current = 0;
             const increment = target / 50;
@@ -1118,13 +1439,11 @@
             }, 30);
         }
 
-        // Keyboard navigation
         document.addEventListener('keydown', (e) => {
             if (e.key === 'ArrowRight') nextPhoto();
             if (e.key === 'ArrowLeft') previousPhoto();
         });
 
-        // Touch swipe support
         let touchStartX = 0;
         let touchEndX = 0;
 
@@ -1142,21 +1461,19 @@
             if (touchEndX > touchStartX + 50) previousPhoto();
         }
 
-        // Initialize everything
         window.addEventListener('load', () => {
             createHearts();
+            createPetals();
             createProgressDots();
             createSparkles();
             
-            // Animate stats after page loads
             setTimeout(() => {
                 animateStats();
-                animateCounter(document.getElementById('daysCount'), 730);  // 2 years = 730 days
-                animateCounter(document.getElementById('hoursCount'), 17520);  // 2 years in hours
+                animateCounter(document.getElementById('daysCount'), 730);
+                animateCounter(document.getElementById('hoursCount'), 17520);
             }, 500);
         });
 
-        // Prevent zoom on double tap for better mobile experience
         let lastTouchEnd = 0;
         document.addEventListener('touchend', (e) => {
             const now = Date.now();
